@@ -1,3 +1,6 @@
+
+
+
 function eventInputValid(input){
     var rawInput = document.forms["eventInputField"]["eventInput"];
     if (rawInput.value == ""){
@@ -26,3 +29,4 @@ $(document).on("click", "#eventBtn", function () {
 $(document).on("click", "#locationBtn", function () {
 
 })
+
