@@ -1,72 +1,108 @@
 
 
 
-function eventInputValid(input){
-    var rawInput = document.forms["eventInputField"]["eventInput"];
-    if (rawInput.value == ""){
-        return false;
-    }
-    return true;
-    
-},
-//what inputs will we be accepting for the location input?
-//zip code, city, 
-function locationInputValid(input){
-    var rawInput = document.forms["locationInputField"]["locationInput"];
-    if (rawInput.value == ""){
-        return false;
-    }
-    return true;
-}
+$(document).ready(function () {
 
-//listens for event input submission, runs basic validaion then take th input and submits it to the 
-//zomato ajax api function
-$(document).on("click", "#eventBtn", function () {
+    var queryLocationURL = "https://developers.zomato.com/api/v2.1/locations";
 
-})
-//listens for location input submission, then takes that input, runs basic validation
-//and then forwards that data to the googlemaps/mapquest ajax function and runs it.
-$(document).on("click", "#locationBtn", function () {
+    $("#sumbitCityState").on("click", function (event) {
+        event.preventDefault();
 
-})
+        var userLocationInput = $("#city").val().trim();
+        var userStateInput = $("#state").val();
+        var userCityState = userLocationInput + " " + userStateInput;
 
-// *************************************************************
+        // console.log("user state: " + userStateInput);
+        // console.log("user location input: " + userLocationInput);
+        // console.log("city state: " + userCityState);
 
-var queryLocationURL = "https://developers.zomato.com/api/v2.1/locations";
+        $.ajax({
+            url: queryLocationURL + "?query=" + userCityState,
+            method: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.setRequestHeader('user-key', '5bf4f29ca59c03031cc0830248eed6b3');
+            },
+            success: function (zomdata) {
+                console.log("success");
+                console.log(zomdata);
+            }
+        }).then(function (zomdata) {
+            // location lat and long and entity_id
+            // var objLocation = data;
+            console.log(zomdata.location_suggestions[0].entity_id);
+            console.log(zomdata.location_suggestions[0].latitude);
+            console.log(zomdata.location_suggestions[0].longitude);
+            var objLocationEntityId = zomdata.location_suggestions[0].entity_id;
+            var objLocationLat = zomdata.location_suggestions[0].latitude;
+            var objLocationLon = zomdata.location_suggestions[0].longitude;
 
-        $("#location-submit").on("click", function (event) {
-            event.preventDefault();
-
-            var userLocationInput = $("#location-input").val().trim();
-            var userStateInput = $("#state").val();
-            var userCityState = userLocationInput + " " + userStateInput;
-
-            console.log("user state: " + userStateInput);
-            console.log("user location input: " + userLocationInput);
-            console.log("city state: " + userCityState);
+            // Zom search
+            var radius = 5;
+            var count = 10;
+            var queryZomSearchURL = "https://developers.zomato.com/api/v2.1/search?";
+            console.log("query search: " + queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius);
 
             $.ajax({
-                url: queryLocationURL + "?query=" + userCityState,
+                url: queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius,
                 method: 'GET',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Accept', 'application/json');
                     xhr.setRequestHeader('user-key', '5bf4f29ca59c03031cc0830248eed6b3');
                 },
-                success: function (data) {
-                    console.log('success');
-                    console.log(data);
+                success: function (zomdata2) {
+                    console.log("success");
+                    console.log(zomdata2);
                 }
-            }).done(function (data) {
-                // var results = response;
-                var objLocation = data;
-                console.log(objLocation.location_suggestions[0].entity_id);
-                console.log(objLocation.location_suggestions[0].latitude);
-                console.log(objLocation.location_suggestions[0].longitude);
-                var objLocationEntityId = objLocation.location_suggestions[0].entity_id;
-                var objLocationLat = objLocation.location_suggestions[0].latitude;
-                var objLocationLon = objLocation.location_suggestions[0].longitude;
+            }).then(function (zomdata2) {
+                var count = 0;
+                for (var i = 0; i < 10; i++) {
+                    console.log("--------------------------------------------------");
+                    count++;
+                    console.log("COUNT:" + count);
+                    // var restName = zomdata2.restaurants[i].restaurant.name;
+                    // console.log ("restName var: " + restName);
+                    console.log("Name: " + zomdata2.restaurants[i].restaurant.name);
+                    console.log("Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
+                    console.log("address: " + zomdata2.restaurants[i].restaurant.location.address);
+                    console.log("locality: " + zomdata2.restaurants[i].restaurant.location.locality);
+                    console.log("rating text: " + zomdata2.restaurants[i].restaurant.user_rating.rating_text);
+                    console.log("rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
+                    console.log("URL: " + zomdata2.restaurants[i].restaurant.url);
+                    console.log("URL: " + zomdata2.restaurants[i].restaurant.photos_url);
 
-                
+
+
+                    // Create the  list group to contain the content for each
+                    var $restList = $("<ul>");
+                    $restList.addClass("list-group");
+
+                    // Add the newly created element to the DOM
+                    $("#rest-deets").append($restList);
+
+                    var $restListItem = $("<li class='list-group-item restName'>");
+                    $restListItem.append("<h5>" + zomdata2.restaurants[i].restaurant.name + "</h5>");
+                    $restListItem.append("<h6>" + "Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
+                    $restListItem.append("<h6>" + zomdata2.restaurants[i].restaurant.location.address);
+                    $restListItem.append("<h6>" + "locality: " + zomdata2.restaurants[i].restaurant.location.locality);
+                    $restListItem.append("<h6>" + "rating text: " + zomdata2.restaurants[i].restaurant.user_rating.rating_text);
+                    $restListItem.append("<h6>" + "rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
+                    $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.url + ">" + "Zomator MENU URL" + "</a>");
+                    $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.photos_url + ">" + "Zomato PHOTOS URL" + "</a>");
+
+                    // $articleListItem.append("<a href='" + article.web_url + "'>" + article.web_url + "</a>");
+
+                    $restList.append($restListItem);
+
+
+
+
+                };
+
             });
-
         });
+
+    });
+});
+
+
