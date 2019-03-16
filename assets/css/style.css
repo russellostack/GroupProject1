@@ -9,6 +9,7 @@ h1 {
     font-family: 'Anton', sans-serif;
     font-weight: 900;
     letter-spacing: 2px;
+    font-size:35px;
 
 }
 
@@ -25,6 +26,7 @@ h2 {
     opacity: 0.5;
     width: 1000px;
     border-radius: 25px;
+    margin-top: 100px;
 }
 
 h3 {
@@ -38,6 +40,10 @@ h3 {
     color: white;
     font-family: 'Anton', sans-serif;
 
+}
+
+.inputAndFavorites{
+    margin-top: 50px;
 }
 
 .favCard {
