@@ -2,6 +2,11 @@ $(document).ready(function () {
 
     var queryLocationURL = "https://developers.zomato.com/api/v2.1/locations";
 
+
+
+
+
+
     $("#sumbitCityState").on("click", function (event) {
         event.preventDefault();
         // user input values
@@ -58,12 +63,37 @@ $(document).ready(function () {
                     $restListItem.append("<h6>" + "Rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
                     $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.url + ">" + "Zomato MENU URL" + "</a>");
                     $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.photos_url + ">" + "Zomato PHOTOS URL" + "</a>");
+                    $restListItem.append("<i class='far fa-heart heart' id='rest-heart_" + i + "'></i>");
                     $restList.append($restListItem);
                 };
-            });
-        });
 
+
+                //fas is full
+                //far is empty
+
+                $(".heart").on("click", function (event) {
+                    event.preventDefault();
+                    
+                    $(this).removeClass("far");
+                    $(this).addClass("fas");
+                });
+
+
+
+
+
+
+            });
+
+
+
+
+
+        });
     });
+
+
+
 });
 
 
