@@ -9,6 +9,30 @@ $(document).ready(function () {
         var userStateInput = $("#state").val();
         var userCityState = userLocationInput + " " + userStateInput;
         // first ajax call
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=ujQ6emhGAxGPdAKfj3Xpd11EGKJaqgdG";
+        $.ajax({
+            url: queryURL + "&city=" +userLocationInput,
+            method: "GET",
+            success: function (TMObj) {
+                console.log('success');
+                console.log(TMObj);
+            }
+        }).then(function (TMObj) {
+        $.each(TMObj._embedded.events, function(index, value){
+            var $eventList = $("<ul>");
+            $eventList.addClass("list-group");
+            $("#event-deets").append($eventList);
+            var $eventListItem = $("<li class='list-group-item eventName'>");
+            $eventListItem.append("<h5>" + value.name + "</h5>");
+            $eventListItem.append("<h6>" + value.classifications[0].genre.name + "</h6>");
+            $eventListItem.append("<h1>" + value._embedded.venues[0].name + "</h1>");
+
+            $eventListItem.append("<h2>" + value._embedded.venues[0].address.line1 + ", " + value._embedded.venues[0].city.name + "</h2>");
+
+            $eventList.append($eventListItem);
+        });
+    });
+
         $.ajax({
             url: queryLocationURL + "?query=" + userCityState,
             method: 'GET',
@@ -64,6 +88,5 @@ $(document).ready(function () {
         });
 
     });
-});
 
-
+})
