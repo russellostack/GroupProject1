@@ -82,15 +82,13 @@ $(document).ready(function () {
 
                     var $restListItem = $("<li class='list-group-item restName'>");
                     $restListItem.append("<h5>" + zomdata2.restaurants[i].restaurant.name + "</h5>");
-                    $restListItem.append("<h6>" + "Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
                     $restListItem.append("<h6>" + zomdata2.restaurants[i].restaurant.location.address);
-                    $restListItem.append("<h6>" + "locality: " + zomdata2.restaurants[i].restaurant.location.locality);
-                    $restListItem.append("<h6>" + "rating text: " + zomdata2.restaurants[i].restaurant.user_rating.rating_text);
-                    $restListItem.append("<h6>" + "rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
-                    $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.url + ">" + "Zomator MENU URL" + "</a>");
+                    $restListItem.append("<h6>" + "Locality: " + zomdata2.restaurants[i].restaurant.location.locality);
+                    $restListItem.append("<h6>" + "Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
+                    $restListItem.append("<h6>" + "Rating text: " + zomdata2.restaurants[i].restaurant.user_rating.rating_text);
+                    $restListItem.append("<h6>" + "Rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
+                    $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.url + ">" + "Zomato MENU URL" + "</a>");
                     $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.photos_url + ">" + "Zomato PHOTOS URL" + "</a>");
-
-                    // $articleListItem.append("<a href='" + article.web_url + "'>" + article.web_url + "</a>");
 
                     $restList.append($restListItem);
 
