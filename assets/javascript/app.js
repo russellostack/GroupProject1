@@ -1,13 +1,10 @@
-
-
-
 $(document).ready(function () {
 
     var queryLocationURL = "https://developers.zomato.com/api/v2.1/locations";
 
     $("#sumbitCityState").on("click", function (event) {
         event.preventDefault();
-
+        // user input values
         var userLocationInput = $("#city").val().trim();
         var userStateInput = $("#state").val().trim();
         var userCityState = userLocationInput + " " + userStateInput;
@@ -116,6 +113,7 @@ $(document).ready(function () {
 
         $(".close").on("click", function () {
             modal.hide();
+
         });
     });
 });
