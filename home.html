@@ -27,8 +27,25 @@
 
     <!--Input Feilds -->
     <main class="text-center py-5">
-
         <div class="container">
+            <!-- Modal for input validation -->
+            <div id="mymodal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="errormessage" style="color:red;"></p>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
 
@@ -43,7 +60,7 @@
                         <!-- state selector -->
                         <label for="sel1">State</label>
                         <select class="form-control" id="state" name="state">
-                            <option value="">N/A</option>
+                            <option value="none">N/A</option>
                             <option value="AK">Alaska</option>
                             <option value="AL">Alabama</option>
                             <option value="AR">Arkansas</option>
