@@ -1,7 +1,56 @@
-body {
-    background-image: url("../images/background.jpg");
-    background-image: repeat;
+body {background: black;
 }
+
+.websection1 {
+    background-image: url("../images/background.jpg");
+    height: 100%; 
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 100px;
+  
+}
+
+
+.inputs {
+background: black;
+}
+
+.results {
+    background-image: url("../images/background.jpg");
+    height: 100%; 
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  
+
+}
+
+.blackLayer {
+
+    background:black;
+    opacity: 0.5;
+    padding-bottom: 100px;
+    position: absolute;
+    z-index: 0;
+    top: 0; 
+    left :0;
+    width: 100%;
+    height: 100%;
+}
+
+.apiResults {
+    position: relative;
+    z-index: 5;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+
+
 
 h1 {
     color: white;
@@ -18,12 +67,13 @@ h2 {
     text-align: center;
     font-size: 32px;;
     font-weight: bold;
-    font-family: 'Roboto', sans-serif
+    font-family: 'Roboto', sans-serif;
+    line-height: 50px;
 }
 
 .appOverview {
     background:black;
-    opacity: 0.5;
+    opacity: 0.8;
     width: 1000px;
     border-radius: 25px;
     margin-top: 100px;
@@ -32,8 +82,9 @@ h2 {
 h3 {
     color: white;
     text-align: center;
-    font-size: 24px;
-    font-family: 'Roboto', sans-serif
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 30px;
 }
 
 .userInput{
@@ -42,9 +93,7 @@ h3 {
 
 }
 
-.inputAndFavorites{
-    margin-top: 50px;
-}
+
 
 .favCard {
  top: 75px;
