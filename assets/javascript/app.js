@@ -25,9 +25,12 @@ $(document).ready(function () {
             var $eventListItem = $("<li class='list-group-item eventName'>");
             $eventListItem.append("<h5>" + value.name + "</h5>");
             $eventListItem.append("<h6>" + value.classifications[0].genre.name + "</h6>");
-            $eventListItem.append("<h1>" + value._embedded.venues[0].name + "</h1>");
-
-            $eventListItem.append("<h2>" + value._embedded.venues[0].address.line1 + ", " + value._embedded.venues[0].city.name + "</h2>");
+            $eventListItem.append("<h6>" + value._embedded.venues[0].name + "</h6>");
+            $eventListItem.append("<h6>" + value.dates.start.localDate +"<h6>");
+            $eventListItem.append("<h6>" + value.dates.start.localTime+ "<h6>");
+            $eventListItem.append("<h6>" + value._embedded.venues[0].address.line1 + value._embedded.venues[0].city.name + "</h6>");
+            $eventListItem.append("<h6>" + "<a href=" + value.url  + ">" + "Click Here for tickets" + "</a>");
+            $eventListItem.append("<i class='far fa-heart heart' id='eventHeart_" + index + "'></i>");
 
             $eventList.append($eventListItem);
         });
@@ -104,19 +107,19 @@ $(document).ready(function () {
                 }).then(function (zomdata2) {
                     var count = 0;
                     for (var i = 0; i < 10; i++) {
-                        console.log("--------------------------------------------------");
+                        // console.log("--------------------------------------------------");
                         count++;
-                        console.log("COUNT:" + count);
-                        // var restName = zomdata2.restaurants[i].restaurant.name;
-                        // console.log ("restName var: " + restName);
-                        console.log("Name: " + zomdata2.restaurants[i].restaurant.name);
-                        console.log("Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
-                        console.log("address: " + zomdata2.restaurants[i].restaurant.location.address);
-                        console.log("locality: " + zomdata2.restaurants[i].restaurant.location.locality);
-                        console.log("rating text: " + zomdata2.restaurants[i].restaurant.user_rating.rating_text);
-                        console.log("rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
-                        console.log("URL: " + zomdata2.restaurants[i].restaurant.url);
-                        console.log("URL: " + zomdata2.restaurants[i].restaurant.photos_url);
+                        // console.log("COUNT:" + count);
+                        // // var restName = zomdata2.restaurants[i].restaurant.name;
+                        // // console.log ("restName var: " + restName);
+                        // console.log("Name: " + zomdata2.restaurants[i].restaurant.name);
+                        // console.log("Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
+                        // console.log("address: " + zomdata2.restaurants[i].restaurant.location.address);
+                        // console.log("locality: " + zomdata2.restaurants[i].restaurant.location.locality);
+                        // console.log("rating text: " + zomdata2.restaurants[i].restaurant.user_rating.rating_text);
+                        // console.log("rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
+                        // console.log("URL: " + zomdata2.restaurants[i].restaurant.url);
+                        // console.log("URL: " + zomdata2.restaurants[i].restaurant.photos_url);
 
 
 
@@ -166,4 +169,25 @@ $(document).ready(function () {
 
 });
 })
-
+function timeConverter(milTime){
+var time = milTime; // your input
+time = time.split(':'); // convert to array
+// fetch
+var hours = Number(time[0]);
+var minutes = Number(time[1]);
+var seconds = Number(time[2]);
+// calculate
+var timeValue;
+if (hours > 0 && hours <= 12) {
+  timeValue= "" + hours;
+} else if (hours > 12) {
+  timeValue= "" + (hours - 12);
+} else if (hours == 0) {
+  timeValue= "12";
+}
+ 
+timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+timeValue += (seconds < 10) ? ":0" + seconds : ":" + seconds;  // get seconds
+timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+return timeValue;
+}
