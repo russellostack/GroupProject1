@@ -1,42 +1,37 @@
-body {background: black;
+body {
+    background: black;
 }
 
 .websection1 {
     background-image: url("../images/background.jpg");
-    height: 100%; 
+    height: 100%;
     background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-bottom: 100px;
-  
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 100px;
 }
 
-
 .inputs {
-background: black;
+    background: black;
 }
 
 .results {
     background-image: url("../images/background.jpg");
-    height: 100%; 
+    height: 100%;
     background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-
-  
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 .blackLayer {
-
-    background:black;
+    background: black;
     opacity: 0.5;
     padding-bottom: 100px;
     position: absolute;
     z-index: 0;
-    top: 0; 
-    left :0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
@@ -48,31 +43,27 @@ background: black;
     padding-bottom: 100px;
 }
 
-
-
-
-
 h1 {
     color: white;
     text-align: center;
     font-family: 'Anton', sans-serif;
     font-weight: 900;
     letter-spacing: 2px;
-    font-size:35px;
-
+    font-size: 35px;
 }
 
 h2 {
     color: white;
     text-align: center;
-    font-size: 32px;;
+    font-size: 32px;
+    ;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
     line-height: 50px;
 }
 
 .appOverview {
-    background:black;
+    background: black;
     opacity: 0.8;
     width: 1000px;
     border-radius: 25px;
@@ -87,23 +78,25 @@ h3 {
     line-height: 30px;
 }
 
-.userInput{
+.userInput {
     color: white;
     font-family: 'Anton', sans-serif;
-
 }
-
-
 
 .favCard {
- top: 75px;
- font-family: 'Anton', sans-serif;
+    top: 75px;
+    font-family: 'Anton', sans-serif;
 }
 
-
-
 .homeCardImages {
-    width: 540px; 
+    width: 540px;
     height: 300px;
 }
 
+/* modal message text color */
+
+.errormessage {
+    font-family: 'Anton', sans-serif;
+    color: red;
+    text-align: center;
+}
