@@ -32,12 +32,12 @@ $(document).ready(function () {
                     $eventList.addClass("list-group");
                     $("#event-deets").append($eventList);
                     $eventListItem.append("<h5>" + value.name + "</h5>");
-                    $eventListItem.append("<h6>" + value.classifications[0].genre.name + "</h6>");
-                    $eventListItem.append("<h6>" + value._embedded.venues[0].name + "</h6>");
-                    $eventListItem.append("<h6>" + value.dates.start.localDate + "<h6>");
-                    $eventListItem.append("<h6>" + value.dates.start.localTime + "<h6>");
-                    $eventListItem.append("<h6>" + value._embedded.venues[0].address.line1 + value._embedded.venues[0].city.name + "</h6>");
-                    $eventListItem.append("<h6>" + "<a href=" + value.url + ">" + "Click Here for tickets" + "</a>");
+                    $eventListItem.append("<h6>" + "Event Genre: " + value.classifications[0].genre.name + "</h6>");
+                    $eventListItem.append("<h6>" + "Location: " + value._embedded.venues[0].name + "</h6>");
+                    $eventListItem.append("<h6>" + "Event Date: " + value.dates.start.localDate + "<h6>");
+                    $eventListItem.append("<h6>" + "Start Time: " + value.dates.start.localTime + "<h6>");
+                    $eventListItem.append("<h6>" + "Address: " + value._embedded.venues[0].address.line1 + value._embedded.venues[0].city.name + "</h6>");
+                    $eventListItem.append("<h6>" + "<a target='_blank' href=" + value.url + ">" + "Click Here for tickets" + "</a>");
                     $eventListItem.append("<i class='far fa-heart eheart' heart-state='empty' id='eventHeart_" + index + "'></i>");
 
                     $eventList.append($eventListItem);
@@ -151,8 +151,8 @@ $(document).ready(function () {
                                 $restListItem.append("<h6>" + "Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
                                 $restListItem.append("<h6>" + "Rating text: " + zomdata2.restaurants[i].restaurant.user_rating.rating_text);
                                 $restListItem.append("<h6>" + "Rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
-                                $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.url + ">" + "Zomato MENU URL" + "</a>");
-                                $restListItem.append("<h6>" + "<a href=" + zomdata2.restaurants[i].restaurant.photos_url + ">" + "Zomato PHOTOS URL" + "</a>");
+                                $restListItem.append("<h6>" + "<a target='_blank' href=" + zomdata2.restaurants[i].restaurant.url + ">" + "Zomato MENU URL" + "</a>");
+                                $restListItem.append("<h6>" + "<a target='_blank' href=" + zomdata2.restaurants[i].restaurant.photos_url + ">" + "Zomato PHOTOS URL" + "</a>");
                                 $restListItem.append("<i class='far fa-heart heart' id='heart_" + i + "'></i>");
                                 $restList.append($restListItem);
                             };
