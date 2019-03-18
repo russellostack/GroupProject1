@@ -35,7 +35,7 @@ $(document).ready(function () {
                     $eventListItem.append("<h6>" + "Event Genre: " + value.classifications[0].genre.name + "</h6>");
                     $eventListItem.append("<h6>" + "Location: " + value._embedded.venues[0].name + "</h6>");
                     $eventListItem.append("<h6>" + "Event Date: " + value.dates.start.localDate + "<h6>");
-                    $eventListItem.append("<h6>" + "Start Time: " + value.dates.start.localTime + "<h6>");
+                    $eventListItem.append("<h6>" + "Start Time: " + moment(value.dates.start.localTime).format("hh:mm a") + "<h6>");
                     $eventListItem.append("<h6>" + "Address: " + value._embedded.venues[0].address.line1 + value._embedded.venues[0].city.name + "</h6>");
                     $eventListItem.append("<h6>" + "<a target='_blank' href=" + value.url + ">" + "Click Here for tickets" + "</a>");
                     $eventListItem.append("<i class='far fa-heart eheart' heart-state='empty' id='eventHeart_" + index + "'></i>");
@@ -52,10 +52,8 @@ $(document).ready(function () {
                         $(this).removeClass("far");
                         $(this).addClass("fas");
                         $(this).attr("heart-state", "full");
-                        debugger;
                         $(".event").click(function () {
                             var eventNameText = $(this).attr("id");
-                            console.log(eventNameText);
                             $(".insertFavEvent").empty();
                             $(".insertFavEvent").append(eventNameText);
                         });
