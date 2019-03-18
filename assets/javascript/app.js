@@ -25,10 +25,12 @@ $(document).ready(function () {
                 }
             }).then(function (TMObj) {
                 $.each(TMObj._embedded.events, function (index, value) {
+
+                    var $eventListItem = $("<li class='list-group-item event' id='" + value.name + "'>");
+                    $eventListItem.append ($("<h5>" +value.classifications[0].genre.name+"</h5>"));
                     var $eventList = $("<ul>");
                     $eventList.addClass("list-group");
                     $("#event-deets").append($eventList);
-                    var $eventListItem = $("<li class='list-group-item eventName'>");
                     $eventListItem.append("<h5>" + value.name + "</h5>");
                     $eventListItem.append("<h6>" + value.classifications[0].genre.name + "</h6>");
                     $eventListItem.append("<h6>" + value._embedded.venues[0].name + "</h6>");
@@ -36,9 +38,40 @@ $(document).ready(function () {
                     $eventListItem.append("<h6>" + value.dates.start.localTime + "<h6>");
                     $eventListItem.append("<h6>" + value._embedded.venues[0].address.line1 + value._embedded.venues[0].city.name + "</h6>");
                     $eventListItem.append("<h6>" + "<a href=" + value.url + ">" + "Click Here for tickets" + "</a>");
-                    $eventListItem.append("<i class='far fa-heart heart' id='eventHeart_" + index + "'></i>");
+                    $eventListItem.append("<i class='far fa-heart eheart' heart-state='empty' id='eventHeart_" + index + "'></i>");
 
                     $eventList.append($eventListItem);
+                });
+                $(".eheart").on("click", function (event) {
+                    event.preventDefault();
+                    $(".insertFavEvent").empty();
+                    var state = $(this).attr("heart-state");
+                
+                    
+                    if (state === "empty") {
+                        $(this).removeClass("far");
+                        $(this).addClass("fas");
+                        $(this).attr("heart-state", "full");
+                        debugger;
+                        $(".event").click(function () {
+                            var eventNameText = $(this).attr("id");
+                            console.log(eventNameText);
+                            $(".insertFavEvent").empty();
+                            $(".insertFavEvent").append(eventNameText);
+                        });
+                        $(".eheart").hide();
+                        $(this).show();
+                    } else {
+                        $(this).addClass("far");
+                        $(this).removeClass("fas");
+                        $(this).attr("heart-state", "empty");
+                        $(".event").click(function () {
+                            var eventNameText = "";
+                            $(".insertFavEvent").empty();
+                            $(".insertFavEvent").append("Your LIKED event goes HERE");
+                        });
+                        $(".eheart").show();
+                    };
                 });
             });
 
@@ -110,8 +143,9 @@ $(document).ready(function () {
 
                                 // Add the newly created element to the DOM
                                 $("#rest-deets").append($restList);
-                                var $restListItem = $("<li class='list-group-item restName'>");
-                                $restListItem.append("<h5>" + zomdata2.restaurants[i].restaurant.name + "</h5>");
+                                var restName = zomdata2.restaurants[i].restaurant.name;
+                                var $restListItem = $("<li class='list-group-item restaurant' id='" + restName + "'>");
+                                $restListItem.append ($("<h5>" +restName+"</h5>"));
                                 $restListItem.append("<h6>" + zomdata2.restaurants[i].restaurant.location.address);
                                 $restListItem.append("<h6>" + "Locality: " + zomdata2.restaurants[i].restaurant.location.locality);
                                 $restListItem.append("<h6>" + "Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
@@ -123,12 +157,50 @@ $(document).ready(function () {
                                 $restList.append($restListItem);
                             };
 
+                            
+
+
+
+
                             // if there is no data to show
                         } else {
                             modal.show();
                             $(".errormessage").text("No data to show");
                         }
+                        $(".heart").on("click", function (event) {
+                            event.preventDefault();
+                            $(".insertFavRest").empty();
+                            var state = $(this).attr("heart-state");
+                        
+
+                            if (state === "empty") {
+                                $(this).removeClass("far");
+                                $(this).addClass("fas");
+                                $(this).attr("heart-state", "full");
+                                $(".restaurant").click(function () {
+                                    var restNameText = $(this).attr("id");
+                                    $(".insertFavRest").empty();
+                                    $(".insertFavRest").append(restNameText);
+                                    console.log(restNameText);
+                                });
+                                $(".heart").hide();
+                                $(this).show();
+                            } else {
+                                $(this).addClass("far");
+                                $(this).removeClass("fas");
+                                $(this).attr("heart-state", "empty");
+                                $(".restaurant").click(function () {
+                                    var restNameText = "";
+                                    $(".insertFavRest").empty();
+                                    $(".insertFavRest").append("Your LIKED event goes HERE");
+                                });
+                                $(".heart").show();
+                                
+                            }
+                        });
+                        
                     });
+
                 });
             });
 
