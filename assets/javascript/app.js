@@ -68,8 +68,7 @@ $(document).ready(function () {
                 console.log("userStateInput: " + userStateInput);
 
                 $.ajax({
-                    url: queryLocationURL + "?query=" + userCityState,
-                    method: 'GET',
+                    url: queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius,                    method: 'GET',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader('Accept', 'application/json');
                         xhr.setRequestHeader('user-key', '5bf4f29ca59c03031cc0830248eed6b3');
@@ -81,10 +80,6 @@ $(document).ready(function () {
                 }).then(function (zomdata) {
                     // location lat and long and entity_id
                     // var objLocation = data;
-
-                    var objLocationEntityId = zomdata.location_suggestions[0].entity_id;
-                    var objLocationLat = zomdata.location_suggestions[0].latitude;
-                    var objLocationLon = zomdata.location_suggestions[0].longitude;
 
                     // Zom search
                     var radius = 5;
@@ -161,28 +156,5 @@ $(document).ready(function () {
             $(this).removeClass("far");
             $(this).addClass("fas");
         });
-
-        function timeConverter(milTime) {
-            var time = milTime; // your input
-            time = time.split(':'); // convert to array
-            // fetch
-            var hours = Number(time[0]);
-            var minutes = Number(time[1]);
-            var seconds = Number(time[2]);
-            // calculate
-            var timeValue;
-            if (hours > 0 && hours <= 12) {
-                timeValue = "" + hours;
-            } else if (hours > 12) {
-                timeValue = "" + (hours - 12);
-            } else if (hours == 0) {
-                timeValue = "12";
-            }
-
-            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-            timeValue += (seconds < 10) ? ":0" + seconds : ":" + seconds;  // get seconds
-            timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
-            return timeValue;
-        }
     })
 })
