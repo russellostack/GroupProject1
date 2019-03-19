@@ -22,14 +22,13 @@ $(document).ready(function () {
                 url: queryURL + "&city=" + userLocationInput,
                 method: "GET",
                 success: function (TMObj) {
-                    console.log('success');
-                    console.log(TMObj);
+                    console.logTMObj;
                 }
             }).then(function (TMObj) {
                 $.each(TMObj._embedded.events, function (index, value) {
 
                     var $eventListItem = $("<li class='list-group-item event' id='" + value.name + "'>");
-                    $eventListItem.append ($("<h5>" +value.classifications[0].genre.name+"</h5>"));
+                    $eventListItem.append($("<h5>" + value.classifications[0].genre.name + "</h5>"));
                     var $eventList = $("<ul>");
                     $eventList.addClass("list-group");
                     $("#event-deets").append($eventList);
@@ -37,7 +36,7 @@ $(document).ready(function () {
                     $eventListItem.append("<h6>" + "Event Genre: " + value.classifications[0].genre.name + "</h6>");
                     $eventListItem.append("<h6>" + "Location: " + value._embedded.venues[0].name + "</h6>");
                     $eventListItem.append("<h6>" + "Event Date: " + value.dates.start.localDate + "<h6>");
-                    $eventListItem.append("<h6>" + "Start Time: " + moment(value.dates.start.localTime).format("hh:mm a") + "<h6>");
+                    $eventListItem.append("<h6>" + "Start Time: " + moment(value.dates.start.localTime, 'HH:mm').format("hh:mm") + "<h6>");
                     $eventListItem.append("<h6>" + "Address: " + value._embedded.venues[0].address.line1 + value._embedded.venues[0].city.name + "</h6>");
                     $eventListItem.append("<h6>" + "<a target='_blank' href=" + value.url + ">" + "Click Here for tickets" + "</a>");
                     $eventListItem.append("<i class='far fa-heart eheart' heart-state='empty' id='eventHeart_" + index + "'></i>");
@@ -48,8 +47,8 @@ $(document).ready(function () {
                     event.preventDefault();
                     $(".insertFavEvent").empty();
                     var state = $(this).attr("heart-state");
-                
-                    
+
+
                     if (state === "empty") {
                         $(this).removeClass("far");
                         $(this).addClass("fas");
@@ -83,8 +82,6 @@ $(document).ready(function () {
                     xhr.setRequestHeader('user-key', '5bf4f29ca59c03031cc0830248eed6b3');
                 },
                 success: function (zomdata) {
-                    console.log("success");
-                    console.log(zomdata);
                 }
             }).then(function (zomdata) {
                 // location lat and long and entity_id
@@ -97,18 +94,14 @@ $(document).ready(function () {
                 var count = 10;
                 var queryZomSearchURL = "https://developers.zomato.com/api/v2.1/search?";
                 // second ajax call
-                console.log("userLocationInput: " + userLocationInput);
-                console.log("userStateInput: " + userStateInput);
 
                 $.ajax({
-                    url: queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius,                    method: 'GET',
+                    url: queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius, method: 'GET',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader('Accept', 'application/json');
                         xhr.setRequestHeader('user-key', '5bf4f29ca59c03031cc0830248eed6b3');
                     },
                     success: function (zomdata) {
-                        console.log("success");
-                        console.log(zomdata);
                     }
                 }).then(function (zomdata) {
                     // location lat and long and entity_id
@@ -118,7 +111,6 @@ $(document).ready(function () {
                     var radius = 5;
                     var count = 10;
                     var queryZomSearchURL = "https://developers.zomato.com/api/v2.1/search?";
-                    console.log("query search: " + queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius);
 
                     $.ajax({
                         url: queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius,
@@ -128,14 +120,11 @@ $(document).ready(function () {
                             xhr.setRequestHeader('user-key', '5bf4f29ca59c03031cc0830248eed6b3');
                         },
                         success: function (zomdata2) {
-                            console.log("success");
-                            console.log(zomdata2);
                         }
                     }).then(function (zomdata2) {
                         // validation if there is data to show
                         if (zomdata2.results_found > 0) {
 
-                            var count = 0;
                             for (var i = 0; i < 10; i++) {
 
                                 var $restList = $("<ul>");
@@ -145,7 +134,7 @@ $(document).ready(function () {
                                 $("#rest-deets").append($restList);
                                 var restName = zomdata2.restaurants[i].restaurant.name;
                                 var $restListItem = $("<li class='list-group-item restaurant' id='" + restName + "'>");
-                                $restListItem.append ($("<h5>" +restName+"</h5>"));
+                                $restListItem.append($("<h5>" + restName + "</h5>"));
                                 $restListItem.append("<h6>" + zomdata2.restaurants[i].restaurant.location.address);
                                 $restListItem.append("<h6>" + "Locality: " + zomdata2.restaurants[i].restaurant.location.locality);
                                 $restListItem.append("<h6>" + "Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
@@ -157,7 +146,7 @@ $(document).ready(function () {
                                 $restList.append($restListItem);
                             };
 
-                            
+
 
 
 
@@ -171,7 +160,7 @@ $(document).ready(function () {
                             event.preventDefault();
                             $(".insertFavRest").empty();
                             var state = $(this).attr("heart-state");
-                        
+
 
                             if (state === "empty") {
                                 $(this).removeClass("far");
@@ -181,7 +170,6 @@ $(document).ready(function () {
                                     var restNameText = $(this).attr("id");
                                     $(".insertFavRest").empty();
                                     $(".insertFavRest").append(restNameText);
-                                    console.log(restNameText);
                                 });
                                 $(".heart").hide();
                                 $(this).show();
@@ -195,10 +183,10 @@ $(document).ready(function () {
                                     $(".insertFavRest").append("Your LIKED event goes HERE");
                                 });
                                 $(".heart").show();
-                                
+
                             }
                         });
-                        
+
                     });
 
                 });
