@@ -3,6 +3,8 @@ $(document).ready(function () {
     var queryLocationURL = "https://developers.zomato.com/api/v2.1/locations";
 
     $("#sumbitCityState").on("click", function (event) {
+        $("#rest-deets").empty;
+        $("#event-deets").empty;
         event.preventDefault();
         // user input values
         var userLocationInput = $("#city").val().trim();
