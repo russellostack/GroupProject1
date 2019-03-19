@@ -67,7 +67,7 @@ $(document).ready(function () {
                         $(".event").click(function () {
                             var eventNameText = "";
                             $(".insertFavEvent").empty();
-                            $(".insertFavEvent").append("Your LIKED event goes HERE");
+                            $(".insertFavEvent").append("Click a heart to choose your event for your EasyEvening!");
                         });
                         $(".eheart").show();
                     };
@@ -180,7 +180,7 @@ $(document).ready(function () {
                                 $(".restaurant").click(function () {
                                     var restNameText = "";
                                     $(".insertFavRest").empty();
-                                    $(".insertFavRest").append("Your LIKED event goes HERE");
+                                    $(".insertFavRest").append("Click a heart to choose your restaurant for your EasyEvening!");
                                 });
                                 $(".heart").show();
 
