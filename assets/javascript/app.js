@@ -53,11 +53,10 @@ $(document).ready(function () {
                         $(this).removeClass("far");
                         $(this).addClass("fas");
                         $(this).attr("heart-state", "full");
-                        $(".event").click(function () {
-                            var eventNameText = $(this).attr("id");
-                            $(".insertFavEvent").empty();
-                            $(".insertFavEvent").append(eventNameText);
-                        });
+                        var eventNameText =  $(this).parent().find('.eventName').text();
+                        $("#insertFavEvent").empty();
+                        $("#insertFavEvent").html(eventNameText);
+
                         $(".eheart").hide();
                         $(this).show();
                     } else {
@@ -66,8 +65,8 @@ $(document).ready(function () {
                         $(this).attr("heart-state", "empty");
                         $(".event").click(function () {
                             var eventNameText = "";
-                            $(".insertFavEvent").empty();
-                            $(".insertFavEvent").append("Click a heart to choose your event for your EasyEvening!");
+                            $("#insertFavEvent").empty();
+                            $("#insertFavEvent").append("Click a heart to choose your event for your EasyEvening!");
                         });
                         $(".eheart").show();
                     };
@@ -133,8 +132,8 @@ $(document).ready(function () {
                                 // Add the newly created element to the DOM
                                 $("#rest-deets").append($restList);
                                 var restName = zomdata2.restaurants[i].restaurant.name;
-                                var $restListItem = $("<li class='list-group-item restaurant' id='" + restName + "'>");
-                                $restListItem.append($("<h5>" + restName + "</h5>"));
+                                var $restListItem = $("<li class='list-group-item restaurant' id=" + restName + ">");
+                                $restListItem.append($("<h5 class='restName'>" + restName + "</h5>"));
                                 $restListItem.append("<h6>" + zomdata2.restaurants[i].restaurant.location.address);
                                 $restListItem.append("<h6>" + "Locality: " + zomdata2.restaurants[i].restaurant.location.locality);
                                 $restListItem.append("<h6>" + "Cuisine: " + zomdata2.restaurants[i].restaurant.cuisines);
@@ -142,7 +141,7 @@ $(document).ready(function () {
                                 $restListItem.append("<h6>" + "Rating number: " + zomdata2.restaurants[i].restaurant.user_rating.aggregate_rating);
                                 $restListItem.append("<h6>" + "<a target='_blank' href=" + zomdata2.restaurants[i].restaurant.url + ">" + "Zomato MENU URL" + "</a>");
                                 $restListItem.append("<h6>" + "<a target='_blank' href=" + zomdata2.restaurants[i].restaurant.photos_url + ">" + "Zomato PHOTOS URL" + "</a>");
-                                $restListItem.append("<i class='far fa-heart heart' id='heart_" + i + "'></i>");
+                                $restListItem.append("<i class='far fa-heart heart' heart-state='empty' id='heart_" + i + "'></i>");
                                 $restList.append($restListItem);
                             };
 
@@ -158,29 +157,33 @@ $(document).ready(function () {
                         }
                         $(".heart").on("click", function (event) {
                             event.preventDefault();
-                            $(".insertFavRest").empty();
+                            $("#insertFavRest").empty();
                             var state = $(this).attr("heart-state");
-
+                            console.log();
 
                             if (state === "empty") {
                                 $(this).removeClass("far");
                                 $(this).addClass("fas");
                                 $(this).attr("heart-state", "full");
-                                $(".restaurant").click(function () {
-                                    var restNameText = $(this).attr("id");
-                                    $(".insertFavRest").empty();
-                                    $(".insertFavRest").append(restNameText);
-                                });
+                                    var restNameText = $(this).parent().find('.restName').text();
+                                    console.log($(this).parent().find('.restName').text())
+                                    console.log(restNameText);
+                                    console.log($("#insertFavRest"))
+                                    $("#insertFavRest").empty();
+                                    $("#insertFavRest").html(restNameText);
+                                    // $("#insertFavRest").innerText = restNameText;
+                                    // $("#insertFavRest").append(restNameText);
                                 $(".heart").hide();
                                 $(this).show();
                             } else {
                                 $(this).addClass("far");
                                 $(this).removeClass("fas");
                                 $(this).attr("heart-state", "empty");
+                                console.log(" in else");
                                 $(".restaurant").click(function () {
                                     var restNameText = "";
-                                    $(".insertFavRest").empty();
-                                    $(".insertFavRest").append("Click a heart to choose your restaurant for your EasyEvening!");
+                                    $("#insertFavRest").empty();
+                                    $("#insertFavRest").append("Click a heart to choose your restaurant for your EasyEvening!");
                                 });
                                 $(".heart").show();
 

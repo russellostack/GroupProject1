@@ -17,6 +17,11 @@ body {
 
 .results {
     background-image: url("../images/background.jpg");
+<<<<<<< HEAD
+=======
+    width: 100%;
+    height: 100%;
+>>>>>>> d0b8cf48224b2a1faf844cd14fd0552bb8051626
     background-position: center;
     position: relative;
 }
@@ -47,13 +52,13 @@ h1 {
     font-weight: 900;
     letter-spacing: 2px;
     font-size: 35px;
+    text-shadow: 2px 2px black;
 }
 
 h2 {
     color: white;
     text-align: center;
     font-size: 32px;
-    ;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
     line-height: 50px;
@@ -85,6 +90,7 @@ h3 {
     font-family: 'Anton', sans-serif;
 }
 
+
 .homeCardImages {
     width: 540px;
     height: 300px;
@@ -94,11 +100,27 @@ h3 {
 #sumbitCityState {
     margin: 25px;
 }
+
 /* modal message text color */
 
 .errormessage {
     font-family: 'Anton', sans-serif;
-    color: red;
+    color: palevioletred;
     text-align: center;
+    font-size: 35px;
+    padding-top: 15px;
+    text-shadow: 2px 2px 0px rgba(0,0,0, 0.7);
+    letter-spacing: 3px;
+}
 
+.modal-content {
+    background: white;
+}
+
+.modal-body {
+    color: white;
+}
+
+.x-out {
+    color: palevioletred;
 }

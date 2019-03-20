@@ -25,18 +25,14 @@
     <!--moment.js link-->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <title>Easy Evening </title>
-
 </head>
 
 <body>
-
     <!--Header-->
     <div class="websection1">
-
         <div class="container-fluid pageHeader">
             <h1>EasyEvening</h1>
         </div>
-
         <!--Application Overview-->
         <div class="container-fluid appOverview">
             <div class="row">
@@ -45,10 +41,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-
                                 <h3> Always looking for fun things to do in your city? <br>Traveling and not sure what
-                                    the cool
-                                    things to do in town are?</h3>
+                                    are the cool things to do in town?</h3>
                                 <h3>EasyEvening is here to help you plan an epic evening with ease. <br>
                                     As simple as entering
                                     the city and state that you're in,<br> and we return the top rated results for an
@@ -63,9 +57,7 @@
     </div>
 
     <div class="inputs">
-
         <div class="container">
-
             <div class="row inputAndFavorites">
                 <div class="col-md-6 userInput">
                     <!--Input Feilds -->
@@ -139,42 +131,33 @@
                     </main>
                 </div>
                 <div class="col-md-6 favCard">
-
                     <!-- Favorites Card -->
                     <div class="card">
-
                         <!-- Card content -->
                         <div class="card-body selectedFavorites">
-
                             <!-- Title -->
                             <h4 class="card-title"><a>Your Evening Plan</a></h4>
                             <!-- Text -->
-                            <p class="card-text insertFavRest">fav rest will go here </p>
-                            <p class="card-text insertFavEvent">fav event will go here </p>
+                            <p class="card-text" id="insertFavRest">Click a heart to choose your restaurant for your
+                                EasyEvening!</p>
+                            <p class="card-text" id="insertFavEvent">Click a heart to choose your event for your
+                                EasyEvening!</p>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         </main>
     </div>
 
-
-
-
     <div class="results">
         <div class="blackLayer"></div>
-
-        <!-- Card -->
-
         <!--Result Cards-->
         <div class="container apiResults">
             <div class="row">
                 <div class="col ">
                     <!-- Card Regular -->
                     <div class="card card-cascade">
-
                         <!-- Restaurant Card image -->
                         <div class="view view-cascade overlay">
                             <img class="card-img-top homeCardImages" src="https://localtvwjw.files.wordpress.com/2012/06/cleveland-wallpaper.jpg?quality=85&strip=all"
@@ -186,13 +169,11 @@
 
                         <!-- This card will initially be made up of a card and wells for each of the RESTAURANT results -->
                         <div class="card">
-
                             <!-- card Heading for the box -->
                             <div class="card-header">
                                 <strong>
                                     <i class="fas fa-hamburger"></i> Your Restaurants</strong>
                             </div>
-
                             <!-- This main card will hold each of the resulting rest deets -->
                             <div class="card-body" id="rest-deets">
                             </div>
@@ -203,7 +184,6 @@
                 <div class="col ">
                     <!-- Events Card Regular -->
                     <div class="card card-cascade">
-
                         <!-- Card image -->
                         <div class="view view-cascade overlay">
                             <img class="card-img-top homeCardImages" src="http://www.landmarkhearing.com/wp-content/uploads/2018/06/concert-crowd.jpg"
@@ -215,13 +195,11 @@
 
                         <!-- This card will initially be made up of a card and wells for each of the EVENT results -->
                         <div class="card">
-
                             <!-- card Heading for the box -->
                             <div class="card-header">
                                 <strong>
                                     <i class='fas fa-music'></i> Your Events</strong>
                             </div>
-
                             <!-- This main card will hold each of the resulting rest deets -->
                             <div class="card-body" id="event-deets">
                             </div>
@@ -229,32 +207,29 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-<!-- Modal -->
-<div id="mymodal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- <h5 class="modal-title">Modal title</h5> -->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p class="errormessage"></p>
-        </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-primary">Save changes</button>
+    <!-- Modal -->
+    <div id="mymodal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 20px;">
+                <!-- <div class="modal-header"> -->
+                <!-- <h5 class="modal-title">Modal title</h5> -->
+                <!-- </div> -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="x-out" aria-hidden="true">&times;</span>
+                    </button>
+                    <p class="errormessage"></p>
+                </div>
+                <!-- <div class="modal-footer"> -->
+                <!-- <button type="button" class="btn btn-primary">Save changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <!-- </div> -->
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-
-
 
     <!-- jQuery JS -->
     <script src="https://code.jquery.com/jquery.js"></script>
