@@ -202,13 +202,5 @@ $(document).ready(function () {
         $(".close").on("click", function () {
             modal.hide();
         });
-
-        // heart
-        $(".heart").on("click", function (event) {
-            event.preventDefault();
-
-            $(this).removeClass("far");
-            $(this).addClass("fas");
-        });
     })
 })
