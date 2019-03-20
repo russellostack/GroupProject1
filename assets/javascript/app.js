@@ -32,7 +32,7 @@ $(document).ready(function () {
                     var $eventList = $("<ul>");
                     $eventList.addClass("list-group");
                     $("#event-deets").append($eventList);
-                    $eventListItem.append("<h5>" + value.name + "</h5>");
+                    $eventListItem.append("<h5 class = 'eventName'>" + value.name + "</h5>");
                     $eventListItem.append("<h6>" + "Event Genre: " + value.classifications[0].genre.name + "</h6>");
                     $eventListItem.append("<h6>" + "Location: " + value._embedded.venues[0].name + "</h6>");
                     $eventListItem.append("<h6>" + "Event Date: " + value.dates.start.localDate + "<h6>");
@@ -45,15 +45,17 @@ $(document).ready(function () {
                 });
                 $(".eheart").on("click", function (event) {
                     event.preventDefault();
-                    $(".insertFavEvent").empty();
+                    $("#insertFavEvent").empty();
                     var state = $(this).attr("heart-state");
-
 
                     if (state === "empty") {
                         $(this).removeClass("far");
                         $(this).addClass("fas");
                         $(this).attr("heart-state", "full");
-                        var eventNameText =  $(this).parent().find('.eventName').text();
+                        var eventNameText = $(this).parent().find('.eventName').text();
+                        console.log($(this).parent().find('.eventName').text());
+                        console.log(this);
+                        console.log()
                         $("#insertFavEvent").empty();
                         $("#insertFavEvent").html(eventNameText);
 
@@ -63,11 +65,8 @@ $(document).ready(function () {
                         $(this).addClass("far");
                         $(this).removeClass("fas");
                         $(this).attr("heart-state", "empty");
-                        $(".event").click(function () {
-                            var eventNameText = "";
-                            $("#insertFavEvent").empty();
-                            $("#insertFavEvent").append("Click a heart to choose your event for your EasyEvening!");
-                        });
+                        $("#insertFavEvent").empty();
+                        $("#insertFavEvent").append("Click a heart to choose your event for your EasyEvening!");
                         $(".eheart").show();
                     };
                 });
@@ -159,32 +158,24 @@ $(document).ready(function () {
                             event.preventDefault();
                             $("#insertFavRest").empty();
                             var state = $(this).attr("heart-state");
-                            console.log();
 
                             if (state === "empty") {
                                 $(this).removeClass("far");
                                 $(this).addClass("fas");
                                 $(this).attr("heart-state", "full");
-                                    var restNameText = $(this).parent().find('.restName').text();
-                                    console.log($(this).parent().find('.restName').text())
-                                    console.log(restNameText);
-                                    console.log($("#insertFavRest"))
-                                    $("#insertFavRest").empty();
-                                    $("#insertFavRest").html(restNameText);
-                                    // $("#insertFavRest").innerText = restNameText;
-                                    // $("#insertFavRest").append(restNameText);
+                                var restNameText = $(this).parent().find('.restName').text();
+                                console.log($(this).parent().find('.restName').text());
+                                console.log(this);
+                                $("#insertFavRest").empty();
+                                $("#insertFavRest").html(restNameText);
                                 $(".heart").hide();
                                 $(this).show();
                             } else {
                                 $(this).addClass("far");
                                 $(this).removeClass("fas");
                                 $(this).attr("heart-state", "empty");
-                                console.log(" in else");
-                                $(".restaurant").click(function () {
-                                    var restNameText = "";
-                                    $("#insertFavRest").empty();
-                                    $("#insertFavRest").append("Click a heart to choose your restaurant for your EasyEvening!");
-                                });
+                                $("#insertFavRest").empty();
+                                $("#insertFavRest").append("Click a heart to choose your restaurant for your EasyEvening!");
                                 $(".heart").show();
 
                             }
