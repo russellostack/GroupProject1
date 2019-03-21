@@ -87,24 +87,6 @@ $(document).ready(function () {
                 var objLocationLat = zomdata.location_suggestions[0].latitude;
                 var objLocationLon = zomdata.location_suggestions[0].longitude;
 
-                // Zom search
-                var radius = 5;
-                var count = 10;
-                var queryZomSearchURL = "https://developers.zomato.com/api/v2.1/search?";
-                // second ajax call
-
-                $.ajax({
-                    url: queryZomSearchURL + "entity_id=" + objLocationEntityId + "&entity_type=city" + "&count=" + count + "&lat=" + objLocationLat + "&lon=" + objLocationLon + "&radius=" + radius, method: 'GET',
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('Accept', 'application/json');
-                        xhr.setRequestHeader('user-key', '5bf4f29ca59c03031cc0830248eed6b3');
-                    },
-                    success: function (zomdata) {
-                    }
-                }).then(function (zomdata) {
-                    // location lat and long and entity_id
-                    // var objLocation = data;
-
                     // Zom search
                     var radius = 5;
                     var count = 10;
@@ -144,11 +126,6 @@ $(document).ready(function () {
                                 $restList.append($restListItem);
                             };
 
-
-
-
-
-
                             // if there is no data to show
                         } else {
                             modal.show();
@@ -178,12 +155,10 @@ $(document).ready(function () {
                                 $("#insertFavRest").append("Click a heart to choose your restaurant for your EasyEvening!");
                                 $(".heart").show();
 
-                            }
+                            };
                         });
 
                     });
-
-                });
             });
 
             // if input fields empty
@@ -202,5 +177,5 @@ $(document).ready(function () {
         $(".close").on("click", function () {
             modal.hide();
         });
-    })
-})
+    });
+});
